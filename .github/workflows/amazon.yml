@@ -34,7 +34,7 @@ jobs:
       - name: Pull the docker image
         run: docker pull maxjith/amazon:latest
       - name: Run the container amazon
-        run: docker run -d --name amazon -p 8081:80 maxjith/amazon:latest
+        run: docker run -d --name amazon -p 8082:80 maxjith/amazon:latest
   
  
 
