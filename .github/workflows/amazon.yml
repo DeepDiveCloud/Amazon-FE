@@ -1,0 +1,35 @@
+name: Build-push-deploy
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build-analyze-scan:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+     
+      
+
+      - name: Docker build and push
+        run: |
+           #run commands to build and push docker images
+           docker build -t amazon .
+           docker tag netflix maxjith/amazon:latest
+           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+           docker push maxjith/amazon:latest  
+        env:
+           DOCKER_CLI_ACI: 1
+ 
+ 
+
+ 
+
+
+ 
